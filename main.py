@@ -104,8 +104,10 @@ async def remove_bot(request: sanic.request.Request, name: str):
 
 @app.get("/bot/<name:str>")
 async def get_bot(request: sanic.request.Request, name: str):
-
-    return json({"bot": db["bots"].find_one({"name": name})})
+    bot = db["bots"].find_one({"name": name})
+    if not bot:
+        return json({"error": "Bot not found"}, status=404)
+    return json({"bot": bot})
 
 
 # noinspection PyTestUnpassedFixture
