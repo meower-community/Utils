@@ -104,7 +104,7 @@ async def remove_bot(request: sanic.request.Request, name: str):
 
 @app.get("/bot/<name:str>")
 async def get_bot(request: sanic.request.Request, name: str):
-    bot = db["bots"].find_one({"name": name})
+    bot = db["bots"].find_one({"_id": name})
     if not bot:
         return json({"error": "Bot not found"}, status=404)
     return json({"bot": bot})
@@ -131,4 +131,4 @@ async def update_bot(request: sanic.request.Request, name: str):
     return json({"message": "Bot updated"})
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000)
+    app.run(host="0.0.0.0", port=8100)
