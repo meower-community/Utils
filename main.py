@@ -52,7 +52,7 @@ def check_key(name, key):
 
     resp = resp.json()
 
-    post = requests.get(f"https://api.meower.org/posts/{resp["_id"]}?autoget=1&page=1", headers={
+    post = requests.get(f"https://api.meower.org/posts/{resp['_id']}?autoget=1&page=1", headers={
         "token": token
     }).json()["autoget"][0]
 
